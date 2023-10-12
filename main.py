@@ -5,7 +5,7 @@ from config import logger
 from utils.FileToString import file_to_string
 
 # TASK
-from task.Dictionary import Dictionary
+from task.Dictionary.Dictionary import Dictionary
 
 
 def main() -> None:
@@ -22,11 +22,12 @@ def main() -> None:
         else:
             file_string = file_to_string(file_name)
             dictionary = Dictionary(file_string)
-            dictionary.words_frequency = sorted(dictionary.words_frequency)
+            sorted_dictionary = sorted(dictionary.words_frequency.items(), key=lambda x: x[1], reverse=True)
+
             print(
                 f"Word count: {dictionary.count_of_words}\n" +
                 f"Symbol count: {dictionary.count_of_symbols}\n" +
-                f"Catchphrase: {dictionary.words_frequency[0]}"
+                f"Catchphrase: {sorted_dictionary[0]}"
             )
 
 
