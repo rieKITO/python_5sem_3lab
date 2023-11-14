@@ -1,7 +1,7 @@
 import string
 
 from config import logger
-from task.Dictionary.config import punctuation, space_symbols
+from task.Dictionary.dictionary_config import punctuation, space_symbols
 
 class Dictionary:
     def __init__(self, content: str) -> None:
@@ -39,3 +39,10 @@ class Dictionary:
                 self.words_frequency[word] += 1
             else:
                 self.words_frequency[word] = 1
+
+    def sort_dictionary(self, reverse: bool = None) -> list:
+        if reverse or reverse:
+            sorted_dictionary = sorted(self.words_frequency.items(), key=lambda x: x[1], reverse=True)
+        else:
+            sorted_dictionary = sorted(self.words_frequency.items(), key=lambda x: x[1], reverse=False)
+        return sorted_dictionary

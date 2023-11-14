@@ -22,7 +22,7 @@ def main() -> None:
         else:
             file_string = file_to_string(file_name)
             dictionary = Dictionary(file_string)
-            sorted_dictionary = sorted(dictionary.words_frequency.items(), key=lambda x: x[1], reverse=True)
+            sorted_dictionary = dictionary.sort_dictionary(True)
 
             print(
                 f"Word count: {dictionary.count_of_words}\n" +
