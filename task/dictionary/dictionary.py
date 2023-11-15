@@ -1,10 +1,11 @@
-import string
+from task.dictionary.dictionary_config import punctuation, space_symbols
 
-from config import logger
-from task.Dictionary.dictionary_config import punctuation, space_symbols
 
 class Dictionary:
     def __init__(self, content: str) -> None:
+        if type(content) != str:
+            raise TypeError
+
         self.content = content
 
         self.count_of_symbols = 0
@@ -17,6 +18,8 @@ class Dictionary:
         """
         Determining the number of characters, words and word frequency
         """
+        if type(self.content) != str:
+            raise TypeError
 
         content_len = len(self.content)
         new_content = ""
@@ -41,7 +44,10 @@ class Dictionary:
                 self.words_frequency[word] = 1
 
     def sort_dictionary(self, reverse: bool = None) -> list:
-        if reverse or reverse:
+        if reverse and type(reverse) != bool:
+            raise TypeError
+
+        if reverse:
             sorted_dictionary = sorted(self.words_frequency.items(), key=lambda x: x[1], reverse=True)
         else:
             sorted_dictionary = sorted(self.words_frequency.items(), key=lambda x: x[1], reverse=False)
