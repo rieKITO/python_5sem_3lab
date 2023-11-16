@@ -12,12 +12,16 @@ class Dictionary:
         self.count_of_words = 0
         self.words_frequency = {}
 
-        self.dictionary_filling()
+        self.dictionary_filling(self.content)
 
-    def dictionary_filling(self) -> None:
+    def dictionary_filling(self, content: str) -> None:
         """
         Determining the number of characters, words and word frequency
         """
+        self.count_of_symbols = 0
+        self.count_of_words = 0
+        self.words_frequency = {}
+        self.content = content
         if type(self.content) != str:
             raise TypeError
 
@@ -29,7 +33,7 @@ class Dictionary:
             if self.content[index] in punctuation:
                 if 0 < index < content_len - 1:
                     if self.content[index - 1] not in punctuation and self.content[index + 1] not in punctuation or \
-                       self.content[index] in space_symbols:
+                            self.content[index] in space_symbols:
                         new_content += self.content[index]
             else:
                 new_content += self.content[index]

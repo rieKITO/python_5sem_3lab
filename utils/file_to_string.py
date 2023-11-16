@@ -1,20 +1,25 @@
+import os
+
+
 def file_to_string(file_name: str) -> str:
     """
     Transferring the contents of a file to a string
     :param file_name:
     :return: str
     """
-    if type(file_name) != str:
+    if type(file_name) is not str:
         raise TypeError
 
     file_string = ''
 
-    try:
+    if not os.path.isfile(file_name):
+        raise FileNotFoundError
+
+    if os.access(file_name, os.R_OK):
         with open(file_name, 'r') as file:
             for line in file:
                 file_string += line
-
-    except FileNotFoundError:
-        raise FileNotFoundError
+    else:
+        raise PermissionError
 
     return file_string

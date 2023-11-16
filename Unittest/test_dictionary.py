@@ -22,11 +22,19 @@ class TestDictionary(unittest.TestCase):
 
     def test_init_with_invalid_values(self):
         with self.assertRaises(TypeError):
-            Dictionary(123)
-            Dictionary([4])
-            Dictionary(None)
-            Dictionary(5.2)
-            Dictionary({4, 8})
+            Dictionary.__init__(123)
+            Dictionary.__init__([4])
+            Dictionary.__init__(None)
+            Dictionary.__init__(5.2)
+            Dictionary.__init__({4, 8})
+
+    def test_dictionary_filling_raises_type_error_when_content_not_str(self):
+        with self.assertRaises(TypeError):
+            self.dictionary.dictionary_filling(4)
+            self.dictionary.dictionary_filling()
+            self.dictionary.dictionary_filling(None)
+            self.dictionary.dictionary_filling(5.2)
+            self.dictionary.dictionary_filling({4, 8})
 
     def test_sort_dictionary_with_valid_values(self):
         self.assertEqual(self.dictionary.sort_dictionary(True),
