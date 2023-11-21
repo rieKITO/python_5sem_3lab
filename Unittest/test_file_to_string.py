@@ -1,4 +1,3 @@
-import os
 import unittest
 from utils.file_to_string import file_to_string
 from unittest.mock import patch, mock_open
@@ -6,10 +5,13 @@ from unittest.mock import patch, mock_open
 
 class TestFileToString(unittest.TestCase):
     def test_file_to_string_with_valid_file(self):
-        expected_result = "bb aaa b b a a aaa aaa"
-        with patch('builtins.open', mock_open(read_data=expected_result)):
-            actual_result = file_to_string("../test_1.txt")
-            self.assertEqual(actual_result, expected_result)
+        file_content = "dd.dd dd-dd"
+        with unittest.mock.patch(
+            'builtins.open',
+            new=unittest.mock.mock_open(read_data=file_content),
+            create=True
+        ):
+            self.assertEqual(file_content, file_to_string("test_path"))
 
         expected_result = ""
         with patch('builtins.open', mock_open(read_data=expected_result)):
