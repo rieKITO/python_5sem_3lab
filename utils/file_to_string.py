@@ -12,14 +12,13 @@ def file_to_string(file_name: str) -> str:
 
     file_string = ''
 
-    if not os.path.isfile(file_name):
-        raise FileNotFoundError
-
-    if os.access(file_name, os.R_OK):
+    try:
         with open(file_name, 'r') as file:
             for line in file:
                 file_string += line
-    else:
-        raise PermissionError
+    except PermissionError:
+      raise PermissionError
+    except FileNotFoundError:
+        raise FileNotFoundError
 
     return file_string
