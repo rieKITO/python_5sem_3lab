@@ -5,7 +5,7 @@ import unittest.mock
 
 class TestFileToString(unittest.TestCase):
     def test_file_to_string_returns_file_content(self):
-        file_content = "First line text\n Second line    \n third line"
+        file_content = "First line \n Second line    \n third line"
         with unittest.mock.patch(
             'builtins.open',
             new=unittest.mock.mock_open(read_data=file_content),
@@ -31,9 +31,9 @@ class TestFileToString(unittest.TestCase):
         self.assertRaises(TypeError, file_to_string, 5.2)
         self.assertRaises(TypeError, file_to_string, {4, 8})
 
-    def test_large_file(self):
+    def test_file_to_string_with_large_file(self):
         file_content = ""
-        for i in range(10001):
+        for i in range(10000):
             file_content += "This is a line\n"
         with unittest.mock.patch(
             'builtins.open',

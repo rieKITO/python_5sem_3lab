@@ -17,7 +17,7 @@ def file_to_string(file_name: str) -> str:
             for line in file:
                 file_string += line
     except PermissionError:
-      raise PermissionError
+        raise PermissionError
     except FileNotFoundError:
         raise FileNotFoundError
 
